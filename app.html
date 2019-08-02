@@ -1,4 +1,68 @@
 <html>
-    hello worldsdfsd
+    <div id="name" />
+
+<script>
+    const get = (uri, method) => {
+        console.debug("get", uri)
+
+        const request = new XMLHttpRequest()
+        const promise = new Promise((resolve, reject) => {
+            request.onreadystatechange = function () {
+
+                // Only run if the request is complete
+                if (request.readyState !== 4) return
+
+                // Process the response
+                if (request.status >= 200 && request.status < 300) {
+                    // If successful
+                    resolve(request)
+                } else {
+                    // If failed
+                    reject({
+                        status: request.status,
+                        statusText: request.statusText
+                    })
+                }
+            }
+
+            // Setup our HTTP request
+            request.open(method || 'GET', uri, true);
+
+
+            // Send the request
+            request.send();
+
+        })
+        return promise
+    }
+
+    const render = (id, content) => {
+        console.debug("render: id: ", id, "content:", content)
+
+        const setInnerHTML = (elm, html) => {
+            elm.innerHTML = html;
+            Array.from(elm.querySelectorAll("script")).forEach( oldScript => {
+                const newScript = document.createElement("script");
+                Array.from(oldScript.attributes)
+                    .forEach( attr => newScript.setAttribute(attr.name, attr.value) );
+                newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+                oldScript.parentNode.replaceChild(newScript, oldScript);
+            });
+        }
+
+        const element= document.getElementById(id)
+        setInnerHTML(element, content)
+    }
+
+    const requestToBody = (request) => {
+        console.debug("requestToBody:", request)
+        return request.response;
+    }
+
+    get('https://pcc-learning-name.apps.pcfone.io/')
+        .then(requestToBody)
+        .then(render.bind(this, 'name'))
+
+</script>
 
 </html>
