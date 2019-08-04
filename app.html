@@ -59,7 +59,8 @@
         return request.response;
     }
 
-    get('https://pcc-learning-name.apps.pcfone.io/')
+    //get('https://pcc-learning-name.apps.pcfone.io/')
+    get('http://localhost:8080')
         .then(requestToBody)
         .then(render.bind(this, 'name'))
 
