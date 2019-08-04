@@ -5,35 +5,7 @@
     const get = (uri, method) => {
         console.debug("get", uri)
 
-        const request = new XMLHttpRequest()
-        const promise = new Promise((resolve, reject) => {
-            request.onreadystatechange = function () {
-
-                // Only run if the request is complete
-                if (request.readyState !== 4) return
-
-                // Process the response
-                if (request.status >= 200 && request.status < 300) {
-                    // If successful
-                    resolve(request)
-                } else {
-                    // If failed
-                    reject({
-                        status: request.status,
-                        statusText: request.statusText
-                    })
-                }
-            }
-
-            // Setup our HTTP request
-            request.open(method || 'GET', uri, true);
-
-
-            // Send the request
-            request.send();
-
-        })
-        return promise
+        return fetch(uri)
     }
 
     const render = (id, content) => {
@@ -54,14 +26,14 @@
         setInnerHTML(element, content)
     }
 
-    const requestToBody = (request) => {
-        console.debug("requestToBody:", request)
-        return request.response;
+    const responseToBody = (response) => {
+        console.debug("requestToBody:", response)
+        return response.text();
     }
 
     //get('https://pcc-learning-name.apps.pcfone.io/')
-    get('http://localhost:8080')
-        .then(requestToBody)
+    fetch('http://localhost:8080')
+        .then(responseToBody)
         .then(render.bind(this, 'name'))
 
 </script>
