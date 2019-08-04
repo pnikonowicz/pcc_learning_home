@@ -2,10 +2,11 @@
     <div id="name" />
 
 <script>
-    const get = (uri, method) => {
+    const get = (uri) => {
         console.debug("get", uri)
-
-        return fetch(uri)
+        return fetch(uri, {
+            credentials: 'include',
+        })
     }
 
     const render = (id, content) => {
@@ -32,7 +33,7 @@
     }
 
     //get('https://pcc-learning-name.apps.pcfone.io/')
-    fetch('http://localhost:8080')
+    get('http://localhost:8080')
         .then(responseToBody)
         .then(render.bind(this, 'name'))
 
