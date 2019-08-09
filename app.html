@@ -33,7 +33,8 @@
     }
 
     //get('https://pcc-learning-name.apps.pcfone.io/')
-    get('http://localhost:8080')
+    const nameService = "🦖name_service_url"
+    get(nameService)
         .then(responseToBody)
         .then(render.bind(this, 'name'))
 

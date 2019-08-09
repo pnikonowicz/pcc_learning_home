@@ -3,3 +3,5 @@ applications:
 - name: home
   command: node app.js
   buildpack: https://github.com/cloudfoundry/nodejs-buildpack
+  env:
+    NAME_SERVICE_URL: https://pcc-learning-name.apps.pcfone.io/
