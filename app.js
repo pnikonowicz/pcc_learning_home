@@ -8,7 +8,10 @@ app.get('/', function (req, res) {
         if (err) throw err
 
         let nameUrl = process.env.NAME_SERVICE_URL || 'http://localhost:8080';
-        const expanded_html = html.toString().replace(/🦖name_service_url/g, nameUrl);
+        let userStatusUrl = process.env.USER_STATUS_SERVICE_URL || 'http://localhost:8080';
+        const expanded_html = html.toString()
+            .replace(/🦖name_service_url/g, nameUrl)
+            .replace(/🦖user_status_service_url/g, userStatusUrl);
         res.send(expanded_html)
     })
 })
