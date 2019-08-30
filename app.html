@@ -2,42 +2,11 @@
     <div id="name" />
 
     <script type="module" src="https://cdn.apps.pcfone.io/network.js"></script>
-<script>
-    const get = (uri) => {
-        console.debug("get", uri)
-        return fetch(uri, {
-            credentials: 'include',
-        })
-    }
+<script type="module">
+    import {Network} from 'https://cdn.apps.pcfone.io/network.js'
 
-    const render = (id, content) => {
-        console.debug("render: id: ", id, "content:", content)
-
-        const setInnerHTML = (elm, html) => {
-            elm.innerHTML = html;
-            Array.from(elm.querySelectorAll("script")).forEach( oldScript => {
-                const newScript = document.createElement("script");
-                Array.from(oldScript.attributes)
-                    .forEach( attr => newScript.setAttribute(attr.name, attr.value) );
-                newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-                oldScript.parentNode.replaceChild(newScript, oldScript);
-            });
-        }
-
-        const element= document.getElementById(id)
-        setInnerHTML(element, content)
-    }
-
-    const responseToBody = (response) => {
-        console.debug("requestToBody:", response)
-        return response.text();
-    }
-
-    //get('https://pcc-learning-name.apps.pcfone.io/')
     const nameService = "🦖name_service_url"
-    get(nameService)
-        .then(responseToBody)
-        .then(render.bind(this, 'name'))
+    Network.renderHtml(nameService, 'name')
 
 </script>
 
