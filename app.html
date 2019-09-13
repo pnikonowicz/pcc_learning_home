@@ -1,15 +1,18 @@
 <html>
     <div id="name" ></div>
     <div id="user_status" ></div>
+    <div id="answer"></div>
 
     <script type="module">
         import {Network} from 'https://cdn.apps.pcfone.io/network.js'
 
         const nameService = "🦖name_service_url"
         const userStatusService = "🦖user_status_service_url"
+        const answerService = "🦖answer_service_url"
 
         Network.renderHtml(nameService, 'name')
         Network.renderHtml(userStatusService, 'user_status')
+        Network.renderHtml(answerService, 'answer')
 
     </script>
 

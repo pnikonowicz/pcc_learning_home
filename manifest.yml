@@ -6,3 +6,4 @@ applications:
   env:
     NAME_SERVICE_URL: https://name.apps.pcfone.io/
     USER_STATUS_SERVICE_URL: https://userstatus.apps.pcfone.io/
+    ANSWER_SERVICE_URL: https://answer.apps.pcfone.io/
