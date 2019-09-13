@@ -8,7 +8,7 @@ app.get('/', function (req, res) {
         if (err) throw err
 
         const nameUrl = process.env.NAME_SERVICE_URL || 'http://localhost:8080'
-        const userStatusUrl = process.env.USER_STATUS_SERVICE_URL || 'http://localhost:8080'
+        const userStatusUrl = process.env.USER_STATUS_SERVICE_URL || 'http://localhost:3002'
         const answerUrl = process.env.ANSWER_SERVICE_URL || 'http://localhost:3001'
 
         const expanded_html = html.toString()
